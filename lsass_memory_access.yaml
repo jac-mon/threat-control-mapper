@@ -1,0 +1,36 @@
+title: LSASS Memory Access Attempt
+id: 3a9f2c1b-7e4d-4b8a-6f5c-1d0e9a2b3c4d
+status: test
+description: Detects attempts to access LSASS memory, commonly associated with credential dumping tools such as Mimikatz
+author: jac-mon
+date: 2026-06-11
+references:
+  - https://attack.mitre.org/techniques/T1003/
+tags:
+  - attack.credential_access
+  - attack.t1003
+logsource:
+  category: process_access
+  product: windows
+detection:
+  selection:
+    TargetImage|endswith: '\lsass.exe'
+    GrantedAccess|contains:
+      - '0x1010'
+      - '0x1410'
+      - '0x147a'
+      - '0x143a'
+  filter_legitimate:
+    SourceImage|startswith:
+      - 'C:\Windows\System32\'
+      - 'C:\Windows\SysWOW64\'
+  condition: selection and not filter_legitimate
+falsepositives:
+  - Security software performing legitimate memory inspection
+  - Antivirus products
+level: high
+fields:
+  - SourceImage
+  - TargetImage
+  - GrantedAccess
+  - User
