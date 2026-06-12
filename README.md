@@ -22,17 +22,17 @@ The output can inform POA&M entries, continuous monitoring reporting, and detect
 ## How It Works
 
 ```
-User Sigma Rules (.yaml)
+Sigma Rules (.yaml)
         +
 ATT&CK → 800-53 Mapping (.yaml)
         ↓
-    mapper.py (CLI)
+detection_governance.py (CLI)
         ↓
 Console Summary + Gap Report (.md)
 ```
 
 1. Drop your Sigma rules into `sigma_rules/`
-2. Run `mapper.py` against a single technique or all techniques
+2. Run `detection_governance.py` against a single technique or all techniques
 3. Review the gap report to identify which 800-53 controls lack detection support
 
 ---
@@ -42,13 +42,13 @@ Console Summary + Gap Report (.md)
 ```
 threat-control-mapper/
 ├── mappings/
-│   └── attck_to_80053.yaml     # ATT&CK technique → NIST 800-53 control mappings
+│   └── attck_to_80053.yaml      # ATT&CK technique → NIST 800-53 control mappings
 ├── sigma_rules/
-│   └── *.yaml                  # User-supplied Sigma detection rules
+│   └── *.yaml                   # User-supplied Sigma detection rules
 ├── scripts/
-│   └── mapper.py               # CLI tool
+│   └── detection_governance.py  # CLI tool
 ├── reports/
-│   └── gap_report.md           # Auto-generated output (see example below)
+│   └── gap_report.md            # Auto-generated output (see example below)
 ├── requirements.txt
 └── README.md
 ```
@@ -69,17 +69,17 @@ pip install -r requirements.txt
 
 **Analyze a single technique:**
 ```bash
-python scripts/mapper.py --technique T1059.001
+python scripts/detection_governance.py --technique T1059.001
 ```
 
 **Analyze all techniques in the mapping file:**
 ```bash
-python scripts/mapper.py --all
+python scripts/detection_governance.py --all
 ```
 
 **Write a markdown gap report:**
 ```bash
-python scripts/mapper.py --all --output reports/gap_report.md
+python scripts/detection_governance.py --all --output reports/gap_report.md
 ```
 
 ---
