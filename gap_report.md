@@ -65,6 +65,8 @@
 - ❌ **AU-12 — Audit Record Generation** — No Sigma rule provides coverage
 - ❌ **SI-4 — System Monitoring** — No Sigma rule provides coverage
 
+&nbsp;
+
 ### ⚠️ T1078 — Valid Accounts
 **Tactic:** Defense Evasion, Persistence, Privilege Escalation, Initial Access
 
@@ -81,6 +83,8 @@
 - ❌ **AU-2 — Event Logging** — No Sigma rule provides coverage
 - ❌ **SI-4 — System Monitoring** — No Sigma rule provides coverage
 
+&nbsp;
+
 ### ⚠️ T1566 — Phishing
 **Tactic:** Initial Access
 
@@ -93,6 +97,8 @@
 
 **Detection-Specific Controls at Risk:**
 - ❌ **AU-2 — Event Logging** — No Sigma rule provides coverage
+
+&nbsp;
 
 ### ⚠️ T1486 — Data Encrypted for Impact
 **Tactic:** Impact
@@ -107,6 +113,8 @@
 **Detection-Specific Controls at Risk:**
 - ❌ **SI-4 — System Monitoring** — No Sigma rule provides coverage
 
+&nbsp;
+
 ### ⚠️ T1021 — Remote Services
 **Tactic:** Lateral Movement
 
@@ -119,6 +127,8 @@
 
 **Detection-Specific Controls at Risk:**
 - ❌ **SI-4 — System Monitoring** — No Sigma rule provides coverage
+
+&nbsp;
 
 ### ⚠️ T1053 — Scheduled Task/Job
 **Tactic:** Execution, Persistence, Privilege Escalation
@@ -135,6 +145,8 @@
 - ❌ **AU-12 — Audit Record Generation** — No Sigma rule provides coverage
 - ❌ **SI-4 — System Monitoring** — No Sigma rule provides coverage
 
+&nbsp;
+
 ### ⚠️ T1190 — Exploit Public-Facing Application
 **Tactic:** Initial Access
 
@@ -147,6 +159,8 @@
 
 **Detection-Specific Controls at Risk:**
 - ❌ **AU-12 — Audit Record Generation** — No Sigma rule provides coverage
+
+&nbsp;
 
 ### ⚠️ T1110 — Brute Force
 **Tactic:** Credential Access
