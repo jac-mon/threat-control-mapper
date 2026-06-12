@@ -1,0 +1,220 @@
+# ATT&CK to NIST 800-53 Control Mapping
+# Author: jac-mon
+# Version: 1.0
+# Last Updated: 2026-06-11
+# Source: NIST SP 800-53 Rev 5 | MITRE ATT&CK v14
+#
+# Structure:
+#   technique_id: ATT&CK technique or sub-technique ID
+#   technique_name: Plain-text
+#   tactic: ATT&CK tactic this technique falls under
+#   controls: List of relevant NIST 800-53 controls
+#   notes: Why these controls apply
+
+mappings:
+
+  - technique_id: T1059
+    technique_name: Command and Scripting Interpreter
+    tactic: Execution
+    controls:
+      - id: AC-3
+        name: Access Enforcement
+        rationale: Restricts which users and processes can execute scripts and interpreters
+      - id: AU-2
+        name: Event Logging
+        rationale: Defines events to log including script execution activity
+      - id: AU-12
+        name: Audit Record Generation
+        rationale: Generates audit records for script interpreter invocations
+      - id: CM-6
+        name: Configuration Settings
+        rationale: Enforces secure configuration of scripting environments (e.g. PowerShell constrained language mode)
+      - id: CM-7
+        name: Least Functionality
+        rationale: Restricts or disables unnecessary scripting interpreters
+      - id: SI-4
+        name: System Monitoring
+        rationale: Monitors for anomalous script execution patterns
+
+  - technique_id: T1059.001
+    technique_name: PowerShell
+    tactic: Execution
+    controls:
+      - id: AU-2
+        name: Event Logging
+        rationale: Logs PowerShell script block logging events
+      - id: AU-12
+        name: Audit Record Generation
+        rationale: Captures PowerShell execution via ScriptBlock and Module logging
+      - id: CM-6
+        name: Configuration Settings
+        rationale: Enforces PowerShell constrained language mode and execution policy
+      - id: CM-7
+        name: Least Functionality
+        rationale: Disables or restricts PowerShell v2 and unnecessary modules
+      - id: SI-4
+        name: System Monitoring
+        rationale: Detects obfuscated or encoded PowerShell commands
+
+  - technique_id: T1078
+    technique_name: Valid Accounts
+    tactic: Defense Evasion, Persistence, Privilege Escalation, Initial Access
+    controls:
+      - id: AC-2
+        name: Account Management
+        rationale: Manages account lifecycle to prevent misuse of valid credentials
+      - id: AC-3
+        name: Access Enforcement
+        rationale: Enforces authorized access through account privilege controls
+      - id: AC-7
+        name: Unsuccessful Logon Attempts
+        rationale: Limits and monitors failed authentication attempts
+      - id: IA-2
+        name: Identification and Authentication
+        rationale: Requires unique identification for all users accessing the system
+      - id: IA-5
+        name: Authenticator Management
+        rationale: Manages credentials to reduce risk of valid account abuse
+      - id: AU-2
+        name: Event Logging
+        rationale: Logs authentication events for valid account usage
+      - id: SI-4
+        name: System Monitoring
+        rationale: Monitors for anomalous logins using valid credentials
+
+  - technique_id: T1566
+    technique_name: Phishing
+    tactic: Initial Access
+    controls:
+      - id: AT-2
+        name: Literacy Training and Awareness
+        rationale: Trains users to identify and report phishing attempts
+      - id: SI-3
+        name: Malicious Code Protection
+        rationale: Scans email attachments for malicious content
+      - id: SI-8
+        name: Spam Protection
+        rationale: Filters phishing and spam email at the gateway
+      - id: SC-7
+        name: Boundary Protection
+        rationale: Enforces email boundary controls to block malicious senders
+      - id: AU-2
+        name: Event Logging
+        rationale: Logs email delivery and attachment events
+
+  - technique_id: T1486
+    technique_name: Data Encrypted for Impact
+    tactic: Impact
+    controls:
+      - id: CP-9
+        name: System Backup
+        rationale: Maintains backups to recover from ransomware encryption events
+      - id: CP-10
+        name: System Recovery and Reconstitution
+        rationale: Enables recovery of systems following destructive encryption
+      - id: SC-28
+        name: Protection of Information at Rest
+        rationale: Distinguishes authorized vs unauthorized encryption of data at rest
+      - id: SI-3
+        name: Malicious Code Protection
+        rationale: Detects ransomware binaries before execution
+      - id: SI-4
+        name: System Monitoring
+        rationale: Monitors for mass file modification indicative of encryption activity
+
+  - technique_id: T1003
+    technique_name: OS Credential Dumping
+    tactic: Credential Access
+    controls:
+      - id: AC-3
+        name: Access Enforcement
+        rationale: Restricts access to credential stores (LSASS, SAM, NTDS)
+      - id: AC-6
+        name: Least Privilege
+        rationale: Limits which accounts can access memory or credential storage
+      - id: AU-12
+        name: Audit Record Generation
+        rationale: Captures process access events targeting credential stores
+      - id: CM-6
+        name: Configuration Settings
+        rationale: Enforces Credential Guard and LSA protection settings
+      - id: SI-4
+        name: System Monitoring
+        rationale: Monitors for tools and behaviors associated with credential dumping
+
+  - technique_id: T1021
+    technique_name: Remote Services
+    tactic: Lateral Movement
+    controls:
+      - id: AC-3
+        name: Access Enforcement
+        rationale: Enforces authorization for remote service access
+      - id: AC-17
+        name: Remote Access
+        rationale: Controls and monitors all remote access methods
+      - id: IA-2
+        name: Identification and Authentication
+        rationale: Requires authentication for all remote service connections
+      - id: SC-7
+        name: Boundary Protection
+        rationale: Restricts remote service exposure at network boundaries
+      - id: SI-4
+        name: System Monitoring
+        rationale: Monitors for unusual lateral movement via remote services
+
+  - technique_id: T1053
+    technique_name: Scheduled Task/Job
+    tactic: Execution, Persistence, Privilege Escalation
+    controls:
+      - id: AC-3
+        name: Access Enforcement
+        rationale: Restricts which users can create or modify scheduled tasks
+      - id: AU-2
+        name: Event Logging
+        rationale: Logs scheduled task creation and modification events
+      - id: AU-12
+        name: Audit Record Generation
+        rationale: Generates audit records for task scheduler activity
+      - id: CM-6
+        name: Configuration Settings
+        rationale: Enforces secure configuration of task scheduling services
+      - id: SI-4
+        name: System Monitoring
+        rationale: Monitors for unauthorized or anomalous scheduled task creation
+
+  - technique_id: T1190
+    technique_name: Exploit Public-Facing Application
+    tactic: Initial Access
+    controls:
+      - id: RA-5
+        name: Vulnerability Monitoring and Scanning
+        rationale: Identifies vulnerabilities in public-facing applications before exploitation
+      - id: SI-2
+        name: Flaw Remediation
+        rationale: Patches vulnerabilities in public-facing applications
+      - id: SI-3
+        name: Malicious Code Protection
+        rationale: Detects exploit payloads targeting application vulnerabilities
+      - id: SC-7
+        name: Boundary Protection
+        rationale: Limits exposure of public-facing applications via WAF and boundary controls
+      - id: AU-12
+        name: Audit Record Generation
+        rationale: Captures application-layer events for exploitation indicators
+
+  - technique_id: T1110
+    technique_name: Brute Force
+    tactic: Credential Access
+    controls:
+      - id: AC-7
+        name: Unsuccessful Logon Attempts
+        rationale: Enforces lockout policies after repeated failed authentication
+      - id: IA-5
+        name: Authenticator Management
+        rationale: Enforces strong password policies resistant to brute force
+      - id: AU-2
+        name: Event Logging
+        rationale: Logs authentication failure events for brute force detection
+      - id: SI-4
+        name: System Monitoring
+        rationale: Monitors for patterns of repeated authentication failures
